@@ -71,4 +71,15 @@ router.post("/login", async (req, res) => {
   }
 });
 
+router.get("/all",async(req,res)=>{
+  try {
+
+    const allUsers = await UserModel.find({})
+    res.status(200).json(allUsers)
+    
+  } catch (error) {
+    res.status(500).json(error)
+  }
+})
+
 export default router
