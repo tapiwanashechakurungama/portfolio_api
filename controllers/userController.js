@@ -1,6 +1,6 @@
 import bcryptjs from "bcryptjs";
 import UserModel from "./../models/userModel.js";
-import express from "express"
+import express from "express";
 
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -67,12 +67,10 @@ const allUsers = async (req, res) => {
   try {
     const allUsers = await UserModel.find({});
     res.status(200).json(allUsers);
-  } catch (error) { 
+  } catch (error) {
     res.status(500).json(error);
   }
 };
-
-
 
 const updateUserById = async (req, res) => {
   try {

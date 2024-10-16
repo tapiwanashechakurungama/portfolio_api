@@ -18,7 +18,12 @@ app.listen(port, ()=>{
   console.log(`server running on port ${port}`)
 })
 app.get("/",(req,res)=>{
-  res.json("Hello its nashy thats my api here")
+  res.json({
+    loginUser:"/users/login",
+    registerUser:"/users/register",
+    getAllUSers:"/users/all",
+    getUserById:"/user/:id"
+  })
 })
 
 
