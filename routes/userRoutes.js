@@ -1,11 +1,10 @@
-import express from "express"
-import bcryptjs from "bcryptjs"
-import UserModel from "../models/userModel.js"
+import express from "express";
+import bcryptjs from "bcryptjs";
+import UserModel from "../models/userModel.js";
 
-const router = express.Router()
+const router = express.Router();
 
 //register router
-
 
 router.post("/register", async (req, res) => {
   const { username, email, password } = req.body;
@@ -34,8 +33,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-
-//login router 
+//login router
 
 router.post("/login", async (req, res) => {
   try {
@@ -71,15 +69,41 @@ router.post("/login", async (req, res) => {
   }
 });
 
-router.get("/all",async(req,res)=>{
+router.get("/all", async (req, res) => {
   try {
-
-    const allUsers = await UserModel.find({})
-    res.status(200).json(allUsers)
-    
+    const allUsers = await UserModel.find({});
+    res.status(200).json(allUsers);
   } catch (error) {
-    res.status(500).json(error)
+    res.status(500).json(error);
   }
-})
+});
 
-export default router
+//update a specific user by id
+
+router.put("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const updatedUser = await UserModel.findByIdAndUpdate(id, req.body);
+    if (updatedUser) {
+      res.status(200).json(updatedUser);
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+
+//delete a specific user by id
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deleteUser = await UserModel.findByIdAndDelete(id);
+    if (deleteUser) {
+      res.status(200).json("User successfully deleted");
+    }
+  } catch (error) {
+    res.status(500).json(error);
+  }
+});
+export default router;
