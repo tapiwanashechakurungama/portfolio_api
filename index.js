@@ -1,11 +1,13 @@
 import express from "express"
 import cors from "cors"
+import bodyParser from "body-parser"
 import dotenv from "dotenv"
 import connectDB from "./config/db.js"
 import UserRoutes from "./routes/userRoutes.js"
 
 const app = express()
 dotenv.config();
+app.use(bodyParser())
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
@@ -22,7 +24,7 @@ app.get("/",(req,res)=>{
     loginUser:"/users/login",
     registerUser:"/users/register",
     getAllUSers:"/users/all",
-    getUserById:"/user/:id"
+    getUserById:"/users/:id"
   })
 })
 
