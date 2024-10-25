@@ -45,10 +45,7 @@ const loginUser = async (req, res) => {
 
     if (foundUser) {
       // Compare passwords
-      const passwordMatch = await bcrypt.compare(
-        password,
-        foundUser.password
-      );
+      const passwordMatch = await bcrypt.compare(password, foundUser.password);
 
       if (passwordMatch) {
         return res.status(200).json("You logged in successfully.");

@@ -6,6 +6,7 @@ import UserRoutes from "./routes/userRoutes.js"
 import ProjectRoutes from "./routes/projectRoutes.js"
 
 
+
 const app = express()
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -26,7 +27,9 @@ app.get("/",(req,res)=>{
     loginUser:"/users/login",
     registerUser:"/users/register",
     getAllUSers:"/users/all",
-    getUserById:"/users/:id"
+    getUserById:"/users/:id",
+    createProject:"/projects/create",
+    AllProject:"/projects/all"
   })
 })
 //this is the live link https://portfolio-api-1-83e4.onrender.com/
