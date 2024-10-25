@@ -1,4 +1,4 @@
-import bcryptjs from "bcryptjs";
+import bcrypt from "bcryptjs";
 import UserModel from "./../models/userModel.js";
 import express from "express";
 
@@ -16,7 +16,7 @@ const registerUser = async (req, res) => {
         .status(400)
         .json("The user with the same email already exists.");
     } else {
-      const hashedPassword = await bcryptjs.hash(password, 10);
+      const hashedPassword = await bcrypt.hash(password, 10);
       const createUser = await UserModel.create({
         username,
         email,
@@ -45,7 +45,7 @@ const loginUser = async (req, res) => {
 
     if (foundUser) {
       // Compare passwords
-      const passwordMatch = await bcryptjs.compare(
+      const passwordMatch = await bcrypt.compare(
         password,
         foundUser.password
       );
