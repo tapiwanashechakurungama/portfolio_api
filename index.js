@@ -3,7 +3,7 @@ import cors from "cors"
 import dotenv from "dotenv"
 import connectDB from "./config/db.js"
 import UserRoutes from "./routes/userRoutes.js"
-
+import ProjectRoutes from "./routes/projectRoutes.js"
 
 
 const app = express()
@@ -15,6 +15,7 @@ dotenv.config();
 
 const port = process.env.PORT || 8080
 app.use("/users", UserRoutes);
+app.use("/projects", ProjectRoutes);
 
 app.listen(port, ()=>{
   connectDB()
@@ -28,5 +29,6 @@ app.get("/",(req,res)=>{
     getUserById:"/users/:id"
   })
 })
+//this is the live link https://portfolio-api-1-83e4.onrender.com/
 
 
