@@ -15,7 +15,7 @@ const port = process.env.PORT || 8080;
 app.use("/users", UserRoutes);
 app.use("/projects", ProjectRoutes);
 
-app.listen(port, async() => {
+app.listen(port, async () => {
   await connectDB();
   console.log(`server running on port ${port}`);
 });
