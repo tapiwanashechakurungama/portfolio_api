@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import UserModel from "./../models/userModel.js";
 import express from "express";
+import jwt from "jsonwebtoken";
 
 const registerUser = async (req, res) => {
   const { username, email, password } = req.body;
@@ -74,7 +75,8 @@ const updateUserById = async (req, res) => {
     const { id } = req.params;
     const updatedUser = await UserModel.findByIdAndUpdate(id, req.body);
     if (updatedUser) {
-      res.status(200).json(updatedUser);
+      const userUpdated = await UserModel.findById(id);
+      res.status(201).json(userUpdated);
     }
   } catch (error) {
     res.status(500).json(error);
