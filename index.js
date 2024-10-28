@@ -19,7 +19,7 @@ app.listen(port,() => {
   connectDB();
   console.log(`server running on port ${port}`);
 });
-app.get("/", (req, res) => {
+app.get("/",(req, res) => {
   res.json({
     loginUser: "/users/login",
     registerUser: "/users/register",
